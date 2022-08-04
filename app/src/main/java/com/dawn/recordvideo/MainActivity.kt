@@ -1,38 +1,32 @@
 package com.dawn.recordvideo
 
 import android.Manifest
-import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.hardware.display.DisplayManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.Toast
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
-import androidx.core.animation.doOnCancel
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.LifecycleOwner
 import com.dawn.recordvideo.utils.mainExecutor
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import java.io.File
 import kotlin.properties.Delegates
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -140,6 +134,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         permissionRequest.launch(permissions.toTypedArray())
         setContentView(R.layout.fragment_video)
+        findViewById<TextView>(R.id.version_text).text=getVersion()
         displayManager.registerDisplayListener(displayListener, null)
         viewFinder=findViewById(R.id.viewFinder)
         viewFinder.addOnAttachStateChangeListener(object :
@@ -277,6 +272,17 @@ class MainActivity : AppCompatActivity() {
             localVideoCapture.stopRecording()
         }
         isRecording = !isRecording
+    }
+    fun getVersion(): String? {
+        return try {
+            val manager = this.packageManager
+            val info = manager.getPackageInfo(this.packageName, 0)
+            val version = info.versionName
+            "版本：$version"
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+            "找不到版本号"
+        }
     }
 
 }

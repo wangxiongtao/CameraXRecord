@@ -26,7 +26,7 @@ android {
         variant ->
             variant.outputs.all {
                 //鍦ㄨ繖閲屼慨鏀筧pk鏂囦欢鍚?
-                outputFileName = "CameraX-${variant.name}-v${variant.versionName}.apk"
+                outputFileName = "CameraX-${variant.name}-v${APP_VERSION}.apk"
             }
     }
     compileOptions {

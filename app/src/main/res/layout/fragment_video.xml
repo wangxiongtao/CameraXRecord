@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/black">
 
+
     <androidx.camera.view.PreviewView
         android:id="@+id/viewFinder"
         android:layout_width="0dp"
@@ -163,4 +164,12 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:constraint_referenced_ids="gridVertical1,gridVertical2,gridHorizontal1,gridHorizontal2" />
+
+    <TextView
+        android:id="@+id/version_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
