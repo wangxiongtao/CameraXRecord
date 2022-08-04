@@ -11,7 +11,7 @@ android {
         minSdk 21
         targetSdk 31
         versionCode 1
-        versionName "1.0"
+        versionName APP_VERSION
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -21,6 +21,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                //鍦ㄨ繖閲屼慨鏀筧pk鏂囦欢鍚?
+                outputFileName = "CameraX-${variant.name}-v${variant.versionName}.apk"
+            }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
