@@ -134,7 +134,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         permissionRequest.launch(permissions.toTypedArray())
         setContentView(R.layout.fragment_video)
-        findViewById<TextView>(R.id.version_text).text=getVersion()+"--TYPE---"+BuildConfig.BUILD_TYPE
+        findViewById<TextView>(R.id.version_text).text=getVersion()+"-1111111-TYPE---"+BuildConfig.BUILD_TYPE
         displayManager.registerDisplayListener(displayListener, null)
         viewFinder=findViewById(R.id.viewFinder)
         viewFinder.addOnAttachStateChangeListener(object :
